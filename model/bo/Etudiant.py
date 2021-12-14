@@ -1,9 +1,9 @@
+from typing import List
 from Professeur import Professeur
-class Etudiant:
-    def __init__(self,id,code,nom,prenom,age,niveau):
-        self.id     =  id
-        self.code   = code
-        self.nom    = nom
-        self.prenom = prenom
-        self.age    = age
-        self.niveau = niveau
+from Personne import Personne
+class Etudiant(Personne):
+    def __init__(self, id, cne, nom, prenom, age, niveau, matieres):
+        super.__init__(id, nom, prenom, age)
+        self.cne     = cne
+        self.niveau   = niveau
+        self.matieres = matieres
