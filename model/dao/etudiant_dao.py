@@ -19,4 +19,3 @@ class Etudiant_dao:
         WHERE ID  = {id}
         """
         return db.maj(req)
-    def modifdier():
