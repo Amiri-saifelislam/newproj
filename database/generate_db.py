@@ -123,7 +123,6 @@ cur.execute(""" insert into etudiants_professeurs (professeur_id, etudiant_id, n
         values (2, 2, 10)
 """)
 
-
-conn.commit()
+db.commit()
 cur.close()
 db.close()
