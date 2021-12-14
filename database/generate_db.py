@@ -5,46 +5,46 @@ db = sqlite3.connect(db_file)
 cur = db.cursor()
 
 cur.execute("""
-    CREATE TABLE matiers(
+    CREATE TABLE IF NOT EXISTS matiers(
         id INTEGER NOT NULL PRIMARY KEY,
         nom TEXT
     )
 """)
 
 cur.execute("""
-    CREATE TABLE niveaux(
+    CREATE TABLE IF NOT EXISTS niveaux(
         id INTEGER NOT NULL PRIMARY KEY,
         nom TEXT
     )
 """)
 
 cur.execute("""
-    CREATE TABLE etudiants (
+    CREATE TABLE IF NOT EXISTS etudiants (
         id INTEGER NOT NULL PRIMARY KEY,
         niveau_id INTEGER,
         cne TEXT UNIQUE,
         nom TEXT,
         prenom TEXT,
-        age TEXT,
+        date_of_birth TEXT,
         niveau TEXT,
         FOREIGN KEY(niveau_id) REFERENCES niveaux(id)
     )
 """)
 
 cur.execute("""
-    CREATE TABLE professeurs (
+    CREATE TABLE IF NOT EXISTS professeurs (
         id INTEGER NOT NULL PRIMARY KEY,
         matier_id INTEGER,
         nom TEXT,
         prenom TEXT,
-        age TEXT,
+        date_of_birth TEXT,
         FOREIGN KEY(matier_id) REFERENCES matiers(id)
 
     )
 """)
 
 cur.execute("""
-    CREATE TABLE etudiants_professeurs (
+    CREATE TABLE IF NOT EXISTS etudiants_professeurs (
         professeur_id,
         etudiant_id,
         note TEXT,
@@ -52,5 +52,3 @@ cur.execute("""
         FOREIGN KEY(etudiant_id) REFERENCES etudiants(id)
     )
 """)
-
-
