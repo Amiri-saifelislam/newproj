@@ -4,16 +4,21 @@ class Etudiant_dao:
     def ajouter(etudiant):
         db = DBInteraction()
         req = f"""INSERT INTO Etudiants
-        VALUES(
-            {etudiant.cne},
-            {etudiant.nom},
-            {etudiant.prenom},
-            {etudiant.age},
-            {etudiant.niveau}
+            VALUES(
+                {etudiant.cne},
+                {etudiant.nom},
+                {etudiant.prenom},
+                {etudiant.age},
+                {etudiant.niveau}
         )"""
-        return db.maj(req)
+        db.maj(req)
+        req = f""" SELECT id
+            FROM etudiants
+            WHERE cne = {etudiant.cne}
+        """
+
     
-    def supprimer_byid(id):
+    def supprimer(etudiant):
         db = DBInteraction()
         req = f"""DELETE FROM Etudiants
         WHERE ID  = {id}
