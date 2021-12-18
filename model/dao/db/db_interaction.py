@@ -12,7 +12,7 @@ class DBInteraction :
 
     def maj(self,req):
         self.cur.execute(req)
-        con.commit()
+        self.conn.commit()
         return self.cur.rowcount
 
     def __del__(self):
