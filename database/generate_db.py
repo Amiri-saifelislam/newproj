@@ -5,6 +5,14 @@ db = sqlite3.connect("db.sqlite3",
 cur = db.cursor()
 
 cur.execute("""
+    CREATE TABLE IF NOT EXISTS admins (
+      id INTEGER NOT NULL PRIMARY KEY,
+      login TEXT UNIQUE,
+      mot_de_passe TEXT
+   )
+""")
+
+cur.execute("""
     CREATE TABLE IF NOT EXISTS niveaux (
         id INTEGER NOT NULL PRIMARY KEY,
         nom TEXT UNIQUE
@@ -121,6 +129,10 @@ cur.execute(""" insert into matiers (professeur_id, etudiant_id, note)
 cur.execute(""" insert into matiers (professeur_id, etudiant_id, note)
         values (2, 2, 10)
 """)
+
+cur.execute(""" insert into admins(login, mot_de_passe)
+        values("admin", "admin")
+        """)
 
 cur.execute("""select * from etudiants where id = 1""")
 print(cur.fetchall())
